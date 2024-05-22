@@ -17,16 +17,16 @@ client.on("messageCreate", async(message) => {
     for (let i=0;i<forbiddenWords.length;i++) {
         if (message.content.includes(forbiddenWords[i])) {
             const embed = new MessageEmbed()
-            .setAuthor("Censored Word found")
+            .setAuthor("👤 Censored Word found")
             .setColor("DARK_GREEN")
-            .setDescription(`Message from ${message.author} has been censored. For info on message deleted check your servers logs if you have any.`)
+            .setDescription(`:x: Message from ${message.author} has been censored.`)
             try {
                 await message.delete()
                 message.channel.send({embeds: [embed]})
             } catch (error) {
                 console.log(error)
                 embed.setColor("DARK_RED")
-                embed.setDescription("Missing permissions to delete message that has a censored word.")
+                embed.setDescription(" 😖 Missing permissions to delete message that has a censored word.")
                 message.reply({embeds: [embed]})
             }
             break
